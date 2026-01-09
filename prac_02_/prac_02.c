@@ -1,3 +1,6 @@
+/*
+    A program to count digits, vowels, and symbols in a given line of text
+*/
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>

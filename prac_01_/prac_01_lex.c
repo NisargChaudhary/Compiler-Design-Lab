@@ -1,3 +1,6 @@
+/*
+    A simple lexical analyzer for C language
+*/
 #include<stdio.h>
 #include<ctype.h>
 #include<string.h>

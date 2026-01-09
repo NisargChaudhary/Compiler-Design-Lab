@@ -1,3 +1,6 @@
+/*
+    A program to validate usernames and passwords based on specific criteria
+*/
 #include <stdio.h>
 #include <string.h>
 
