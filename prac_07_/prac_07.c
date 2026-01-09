@@ -1,6 +1,7 @@
 /*
  Program to implement LALR Parsing
-*/#include<stdio.h>
+*/
+#include<stdio.h>
 #include<conio.h>
 #include<stdlib.h>
 #include<string.h>
