@@ -1,3 +1,6 @@
+/*
+Program to implement Operator Precedence Parsing
+*/
 #include<stdio.h>
 #include<conio.h>
 #include<string.h>

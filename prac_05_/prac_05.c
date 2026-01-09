@@ -1,3 +1,6 @@
+/*
+Program to implement Recursive Descent Parsing
+*/
 #include<stdio.h>
 static char c[10];
 char input;
