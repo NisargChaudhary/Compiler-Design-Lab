@@ -23,8 +23,8 @@ ch = fgetc(fp);
 str[i]='\0';
 printf("%s",str);
 fclose(fp);
-if(strcmp(str,"JayDepani")==0 || strcmp(str,"DepaniJay")==0 || strcmp(str,"JayPatel")==0 ||
-strcmp(str,"PatelJay")==0){
+if(strcmp(str,"NisargChaudhary")==0 || strcmp(str,"ChaudharyNisarg")==0 || strcmp(str,"NisargPatel")==0 ||
+strcmp(str,"PatelNisarg")==0){
 printf("\n This Username is Already there,please try to other Username.");
 return 0;
 }
