@@ -40,7 +40,3 @@ All programs are written in a simple and understandable manner for:
 - **Lexical Analyzer Generator:** LEX / Flex  
 - **Compiler:** GCC  
 - **Platform:** Windows  
-
----
-   gcc program_name.c
-
