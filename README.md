@@ -39,12 +39,8 @@ All programs are written in a simple and understandable manner for:
 - **Programming Language:** C  
 - **Lexical Analyzer Generator:** LEX / Flex  
 - **Compiler:** GCC  
-- **Platform:** Windows / Linux  
+- **Platform:** Windows  
 
 ---
-
-## ▶️ How to Execute C Programs
-1. Open terminal or command prompt  
-2. Compile the program:
-   ```bash
    gcc program_name.c
+
