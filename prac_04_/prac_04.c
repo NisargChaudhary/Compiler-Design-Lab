@@ -24,7 +24,6 @@ int main() {
     printf("E  -> T E'\n");
     printf("E' -> + T E' | ε\n");
     printf("T  -> i\n\n");
-
     printf("Enter input string (end with $): ");
     scanf("%s", input);
 
