@@ -1,5 +1,17 @@
 /*
-Program to implement Recursive Descent Parsing
+Program to implement Recursive Descent Parsing.
+-------------------------------------------------
+
+Grammar:
+E  -> i E'
+E' -> + i E' | ε
+
+Valid Strings:
+i$
+i+i$
+i+i+i$
+
+-------------------------------------------------
 */
 #include<stdio.h>
 static char c[10];

@@ -1,17 +1,59 @@
 /*
 Program to implement Operator Precedence Parsing.
--------------------------------------------------
+------------------------------------------------------------
 
-Grammar:
-E  -> i E'
-E' -> + i E' | ε
+Theory:
+Operator Precedence Parsing is a bottom-up parsing technique
+used for expression grammars where operators and operands
+have defined precedence and associativity.
 
-Valid Strings:
-i$
-i+i$
-i+i+i$
+This parser works using:
+- Operator precedence table
+- Stack
+- Shift and Reduce operations
 
--------------------------------------------------
+It:
+- Handles expressions like i+i*i
+- Uses precedence rules to decide parsing actions
+- Is suitable for expression-based grammars
+
+------------------------------------------------------------
+
+Grammar Used:
+E → E + E
+E → E * E
+E → i
+
+Where:
+i  → identifier
++  → addition operator
+*  → multiplication operator
+$  → end marker
+
+Operator Precedence:
+*  >  +
+
+------------------------------------------------------------
+
+Algorithm:
+1. Initialize stack with '$'
+2. Append '$' to the input string
+3. Repeat until stack and input both contain '$':
+   - Compare precedence of stack top and input symbol
+   - If stack precedence < input precedence → Shift
+   - If stack precedence > input precedence → Reduce
+   - If both are '$' → Accept
+4. Otherwise → Reject
+
+------------------------------------------------------------
+
+Sample Input:
+i+i*i$
+
+Sample Output:
+Accept
+
+------------------------------------------------------------
 */
 #include<stdio.h>
 #include<conio.h>
