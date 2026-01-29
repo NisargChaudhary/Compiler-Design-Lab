@@ -1,0 +1,120 @@
+=================================================================================
+Aim : To Study about Lexical Analyzer Generator (LEX) and Flex (Fast Lexical Analyzer)
+=================================================================================
+
+Lex - A Lexical Analyzer Generator:-
+
+Lex is a program generator designed for lexical processing of character input streams. It accepts a
+high-level, problem oriented specification for character string matching, and produces a program in a
+general purpose language which recognizes regular expressions. The regular expressions are
+specified by the user in the source specifications given to Lex. The Lex written code recognizes
+these expressions in an input stream and partitions the input stream into strings matching the
+expressions.
+
+The grammar in the above diagram is a text file you create with a text edtior. Yacc will read your
+grammar and generate C code for a syntax analyzer or parser. The syntax analyzer uses grammar
+rules that allow it to analyze tokens from the lexical analyzer and create a syntax tree. The syntax
+tree imposes a hierarchical structure the tokens. For example, operator precedence and associativity
+are apparent in the syntax tree. The next step, code generation, does a depth-first Lexical Analyzer
+Syntax Analyzer a = b + c * d id1 = id2 + id3 * id4 = + * id1 source code tokens syntax tree id2 id3
+id4 load id3 mul id4 add id2 store id1 Code Generator generated code Lex Yacc patterns grammar 5
+walk of the syntax tree to generate code. Some compilers produce machine code, while others, as
+shown above, output assembly language.
+
+                                                               source
+bas.y  -->  yacc  -->  y.tab.c (yyparse) -----                    |
+             |                                |                   |
+             v                                |                   v
+          y.tab.h                             -----> cc ------> bas.exe
+             |                                |                   |
+             v                                |                   |
+bas.l  -->  lex   -->  lex.yy.c (yylex) ------                    v
+                                                             compiled output
+
+                    Figure 2: Building a Compiler with Lex/Yacc
+
+
+------------------------------------------------------------------------
+                           What is Flex?
+------------------------------------------------------------------------
+
+• Flex is a powerful, open source application framework which allows to build traditional
+applications for browser, mobile and desktop using the same programming model, tool, and
+codebase.
+
+• Flex provides FLEX SDK consisting of the Flex class library (ActionScript classes), the
+Flex compilers, the debugger, the MXML and ActionScript programming languages, and
+other utilities to build expressive and interactive rich internet applications (RIA)
+
+• Flex takes care of the user interface (UI) or the client-side functionality of a web
+application. Server-side functionality dependent on server-side components written in a
+traditional scripting language.
+
+------------------------------------------------------------------------
+                          How to use FLEX?
+------------------------------------------------------------------------
+                          
+• FLEX (Fast LEXical analyzer generator) is a tool for generating scanners. In stead of writing a
+scanner from scratch, you only need to identify the vocabulary of a certain language (e.g.
+Simple), write a specification of patterns using regular expressions (e.g. DIGIT [0-9]), and FLEX
+will construct a scanner for you. FLEX is generally used in the manner depicted here:
+
+
+Specification of a Scanner
+    - stdin
+            ------------------->   FLEX  ------------------>  lex.yy.c   
+    - *.flex
+
+lex.yy.c  -------------------->  C compiler  ------------------>  a.out
+
+
+Input Stream  ---------------->  a.out  ------------------------>  Sequence of Tokens
+
+
+• First, FLEX reads a specification of a scanner either from an input file *.lex, or from standard
+input, and it generates as output a C source file lex.yy.c. Then, lex.yy.c is compiled and linked with
+the "-lfl" library to produce an executable a.out. Finally, a.out analyzes its input stream and
+transforms it into a sequence of tokens.
+
+• *.lex is in the form of pairs of regular expressions and C code. (sample1.lex, sample2.lex)
+lex.yy.c defines a routine yylex() that uses the specification to recognize tokens. a.out is actually
+the scanner!
+
+------------------------------------------------------------------------
+         How to Compile & Run LEX / YACC Programs on Windows ?
+------------------------------------------------------------------------
+
+If you are installing Ubuntu (or any Linux based OS) on your system either through Virtual Box or
+by making your system Multi-Bootable, just to execute your Lex & Yacc programs; then you might
+be wasting your HDD space & your valuable time. You can easily skip this annoying process and
+run your programs in Windows OS without any hassles.
+
+Here's how you can do it:
+
+==========Installing Softwares:============
+    1. Download Flex 2.5.4a
+    2. Download Bison 2.4.1
+    3. Download DevC++
+    4. Install Flex at "C:\GnuWin32"
+    5. Install Bison at "C:\GnuWin32"
+    6. Install DevC++ at "C:\Dev-Cpp"
+    7. Open Environment Variables.
+    8. Add "C:\GnuWin32\bin;C:\Dev-Cpp\bin;" to path.
+
+========Compilation & Execution of your Program:=============
+
+    1. Open Command prompt and switch to your working directory where you have stored
+       your lex file (".l") and yacc file (".y")
+
+    2. Let your lex and yacc files be "hello.l" and "hello.y". Now, follow the preceding steps
+       to compile and run your program.
+
+       1. For Compiling Lex file only:
+          1. flex hello.l
+          2. gcc lex.yy.c
+       2. For Compiling Lex & Yacc file both:
+          1. flex hello.l
+          2. bison -dy hello.y
+          3. gcc lex.yy.c y.tab.c
+       3. For Executing the Program
+          1. a.exe
