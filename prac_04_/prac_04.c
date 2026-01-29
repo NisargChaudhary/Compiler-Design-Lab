@@ -1,5 +1,40 @@
 /*
 A program that implement predictive parsing LL(1) for a simple grammar.
+------------------------------------------------------------
+
+Grammar Used:
+E  → T E'
+E' → + T E' | ε
+T  → i
+
+Where:
+i  → identifier
++  → operator
+$  → end of input symbol
+ε  → empty (epsilon)
+
+------------------------------------------------------------
+
+Concept:
+Predictive parsing is a top-down parsing technique.
+It uses:
+- A stack
+- An input buffer
+- Grammar rules
+- One lookahead symbol (LL(1))
+
+The parser predicts which production to apply
+without backtracking.
+
+------------------------------------------------------------
+
+Sample Input:
+i+i$
+
+Expected Output:
+String Accepted!
+
+------------------------------------------------------------
 */
 #include <stdio.h>
 #include <string.h>
