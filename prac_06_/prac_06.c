@@ -55,97 +55,86 @@ Accept
 
 ------------------------------------------------------------
 */
-#include<stdio.h>
-#include<conio.h>
-#include<string.h>
-int main()
-{
-char stack[20],ip[20],opt[10][10][1],ter[10];
-int i,j,k,n,top=0,row,col;
-int len;
-for(i=0;i<10;i++)
-{
-stack[i]=NULL;
-ip[i]=NULL;
-for(j=0;j<10;j++)
-{ opt[i][j][1]=NULL;
+#include <stdio.h>
+#include <string.h>
+
+/* Stack for parsing */
+char stack[20];
+int top = -1;
+
+/* Function declarations */
+void push(char);
+void pop();
+char precedence(char, char);
+
+int main() {
+    char input[20];
+    int i = 0;
+    char a, b;
+
+    printf("Enter the input string (end with $): ");
+    scanf("%s", input);
+
+    /* Initialize stack with $ */
+    push('$');
+
+    printf("\nStack\tInput\tAction\n");
+
+    while (1) {
+        a = stack[top];     // Top of stack
+        b = input[i];       // Current input symbol
+
+        printf("%s\t%s\t", stack, &input[i]);
+
+        if (a == '$' && b == '$') {
+            printf("Accept\n");
+            break;
+        }
+
+        if (precedence(a, b) == '<' || precedence(a, b) == '=') {
+            push(b);
+            i++;
+            printf("Shift\n");
+        }
+        else if (precedence(a, b) == '>') {
+            pop();
+            printf("Reduce\n");
+        }
+        else {
+            printf("Error\n");
+            break;
+        }
+    }
+
+    return 0;
 }
+
+/* Push operation */
+void push(char c) {
+    stack[++top] = c;
+    stack[top + 1] = '\0';
 }
-printf("Enter the no.of terminals:");
-scanf("%d",&n);
-printf("\nEnter the terminals:");
-scanf("%s",ter);
-printf("\nEnter the table values:\n");
-for(i=0;i<n;i++)
-{
-for(j=0;j<n;j++)
-{
-printf("Enter the value for %c %c:",ter[i],ter[j]);
-scanf("%s",opt[i][j]);
+
+/* Pop operation */
+void pop() {
+    top--;
+    stack[top + 1] = '\0';
 }
-}
-printf("\nOPERATOR PRECEDENCE TABLE:\n");
-for(i=0;i<n;i++)
-{
-printf("\t%c",ter[i]);
-}
-printf("\n ");
-printf("\n");
-for(i=0;i<n;i++)
-{
-printf("\n%c |",ter[i]);
-for(j=0;j<n;j++)
-{
-printf("\t%c",opt[i][j][0]);
-}
-}
-stack[top]='$';
-printf("\n\nEnter the input string(append with $):");
-scanf("%s",ip);
-i=0;
-printf("\nSTACK\t\t\tINPUT STRING\t\t\tACTION\n");
-printf("\n%s\t\t\t%s\t\t\t",stack,ip);
-len=strlen(ip);
-while(i<=len)
-{
-for(k=0;k<n;k++)
-{
-if(stack[top]==ter[k])
-row=k;
-if(ip[i]==ter[k])
-col=k;
-}
-if((stack[top]=='$')&&(ip[i]=='$'))
-{
-printf("String is ACCEPTED");
-break;
-}
-else if((opt[row][col][0]=='<') ||(opt[row][col][0]=='='))
-{
-stack[++top]=opt[row][col][0];
-stack[++top]=ip[i];
-ip[i]=' ';
-printf("Shift %c",ip[i]);
-i++;
-}else
-{
-if(opt[row][col][0]=='>')
-{
-while(stack[top]!='<')
-{
---top;
-}
-top=top-1;
-printf("Reduce");
-}
-else
-{
-printf("\nString is not accepted");
-break;
-}
-}
-printf("\n");
-printf("%s\t\t\t%s\t\t\t",stack,ip);
-}
-getch();
+
+/* Operator precedence function */
+char precedence(char a, char b) {
+    if (a == '$' && b == '$') return '=';
+    if (a == '$') return '<';
+    if (b == '$') return '>';
+
+    if (a == 'i' && b == 'i') return ' ';
+    if (a == 'i') return '>';
+    if (b == 'i') return '<';
+
+    if (a == '+' && b == '+') return '>';
+    if (a == '+' && b == '*') return '<';
+    if (a == '*' && b == '+') return '>';
+    if (a == '*' && b == '*') return '>';
+
+    return ' ';
 }
