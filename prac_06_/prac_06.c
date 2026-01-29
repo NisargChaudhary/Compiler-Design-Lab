@@ -1,5 +1,17 @@
 /*
-Program to implement Operator Precedence Parsing
+Program to implement Operator Precedence Parsing.
+-------------------------------------------------
+
+Grammar:
+E  -> i E'
+E' -> + i E' | ε
+
+Valid Strings:
+i$
+i+i$
+i+i+i$
+
+-------------------------------------------------
 */
 #include<stdio.h>
 #include<conio.h>
